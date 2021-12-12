@@ -1,6 +1,7 @@
 package org.centrale;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Main class
@@ -53,9 +54,17 @@ public class Main {
         }
 
         //Création des Joueurs
-        plateau.getJoueurs().add(new Joueur(Couleur.BLANC));
-        plateau.getJoueurs().add(new Joueur(Couleur.NOIR));
+        Scanner myObj = new Scanner(System.in);
 
+        System.out.println("Quel est le nom du joueur 1 ?");
+        String nom1 = myObj.nextLine();
+        plateau.getJoueurs().add(new Joueur(Couleur.BLANC, nom1));
+        System.out.println(plateau.getJoueurs().get(0).toString());
+
+        System.out.println("Quel est le nom du joueur 2 ?");
+        String nom2 = myObj.nextLine();
+        plateau.getJoueurs().add(new Joueur(Couleur.NOIR, nom2));
+        System.out.println(plateau.getJoueurs().get(1).toString());
 
         //Fin de l'initialisation du jeu
         System.out.println("Jouons au jeu de Dames !\n");

@@ -53,7 +53,7 @@ public class Plateau {
             position = (pion.getPosition().getX() - 1) * 20 + (pion.getPosition().getY() - 1) * 2;
             visu = visu.substring(0,position) + pion + visu.substring(position + 1);
         }
-        return visu;
+        return "\t" + this.getJoueurs().get(0).getNom() + "\n" + visu + "\t" + this.getJoueurs().get(1).getNom();
     }
 
 
