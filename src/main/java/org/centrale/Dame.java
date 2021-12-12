@@ -27,10 +27,11 @@ public class Dame extends Pion {
 
     @Override
     public String toString() {
-        return "Dame{" +
-                "position=" + this.getPosition() +
-                ", couleur=" + this.getCouleur() +
-                '}';
+        if (this.getCouleur() == Couleur.BLANC){
+            return "■";
+        } else {
+            return "□";
+        }
     }
 
 }

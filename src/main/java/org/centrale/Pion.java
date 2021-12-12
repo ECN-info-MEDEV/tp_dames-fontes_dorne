@@ -24,8 +24,7 @@ public class Pion {
     /**
      * Constructeur de recopie
      *
-     * @param position the position
-     * @param couleur  the couleur
+     * @param pion the pion
      */
     public Pion(Pion pion) {
         this.position = pion.getPosition();
@@ -35,10 +34,11 @@ public class Pion {
 
     @Override
     public String toString() {
-        return "Pion{" +
-                "position=" + position +
-                ", couleur=" + couleur +
-                '}';
+        if (this.getCouleur() == Couleur.BLANC){
+            return "●";
+        } else {
+            return "◌";
+        }
     }
 
 

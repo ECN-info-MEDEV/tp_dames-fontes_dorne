@@ -1,5 +1,7 @@
 package org.centrale;
 
+import java.util.List;
+
 /**
  * Main class
  */
@@ -12,6 +14,54 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        System.out.println("Hello World !");
+        //Initialisation du plateau de jeu
+        Plateau plateau = init();
+
+    }
+
+    public static Plateau init(){
+
+        Plateau plateau = new Plateau();
+        List<Pion> pions = plateau.getPions();
+
+        //Création des Pions
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+
+                if ( i == 5 || i == 6) {
+                    //Pas de pions sur les lignes 5 et 6
+                } else if (i % 2 == 0) {
+                    //Si ligne paire alors pions sur colonne paire
+                    if (j % 2 == 0) {
+                        if (i <= 5) {
+                            pions.add(new Pion(new Point2D(i, j), Couleur.BLANC));
+                        } else {
+                            pions.add(new Pion(new Point2D(i, j), Couleur.NOIR));
+                        }
+                    }
+                } else {
+                    //Sinon ajout pions sur colonne impaire
+                    if (j % 2 == 1) {
+                        if (i <= 5) {
+                            pions.add(new Pion(new Point2D(i, j), Couleur.BLANC));
+                        } else {
+                            pions.add(new Pion(new Point2D(i, j), Couleur.NOIR));
+                        }
+                    }
+                }
+            }
+        }
+
+        //Création des Joueurs
+        plateau.getJoueurs().add(new Joueur(Couleur.BLANC));
+        plateau.getJoueurs().add(new Joueur(Couleur.NOIR));
+
+
+        //Fin de l'initialisation du jeu
+        System.out.println("Jouons au jeu de Dames !\n");
+
+        System.out.println(plateau);
+
+        return plateau;
     }
 }

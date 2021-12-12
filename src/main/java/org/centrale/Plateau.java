@@ -1,5 +1,6 @@
 package org.centrale;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,14 @@ public class Plateau {
 
     private List<Joueur> joueurs;
 
+
+    /**
+     * Constructeur vide
+     */
+    public Plateau() {
+        this.pions = new ArrayList<>();
+        this.joueurs = new ArrayList<>();
+    }
 
     /**
      * Constructeur
@@ -26,10 +35,25 @@ public class Plateau {
 
     @Override
     public String toString() {
-        return "Plateau{" +
-                "pions=" + pions +
-                ", joueurs=" + joueurs +
-                '}';
+        String visu = """
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                 | | | | | | | | |\s
+                """;
+
+        int position;
+        for (Pion pion : pions) {
+            position = (pion.getPosition().getX() - 1) * 20 + (pion.getPosition().getY() - 1) * 2;
+            visu = visu.substring(0,position) + pion + visu.substring(position + 1);
+        }
+        return visu;
     }
 
 
