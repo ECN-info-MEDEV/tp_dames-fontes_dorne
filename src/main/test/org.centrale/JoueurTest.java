@@ -15,12 +15,4 @@ class JoueurTest {
     @AfterEach
     void tearDown() {
     }
-
-    @Test
-    void testGetCouleur() {
-    }
-
-    @Test
-    void testSetCouleur() {
-    }
 }

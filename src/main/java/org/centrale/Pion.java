@@ -35,9 +35,9 @@ public class Pion {
     @Override
     public String toString() {
         if (this.getCouleur() == Couleur.BLANC){
-            return "●";
+            return "x";
         } else {
-            return "◌";
+            return "o";
         }
     }
 

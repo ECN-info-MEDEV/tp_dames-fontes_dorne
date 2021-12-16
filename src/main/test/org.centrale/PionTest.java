@@ -19,20 +19,4 @@ class PionTest {
     @Test
     void testToString() {
     }
-
-    @Test
-    void testGetPosition() {
-    }
-
-    @Test
-    void testSetPosition() {
-    }
-
-    @Test
-    void testGetCouleur() {
-    }
-
-    @Test
-    void testSetCouleur() {
-    }
 }

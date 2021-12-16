@@ -19,21 +19,4 @@ class Point2DTest {
     @Test
     void testToString() {
     }
-
-    @Test
-    void testGetX() {
-    }
-
-    @Test
-    void testSetX() {
-    }
-
-    @Test
-    void testGetY() {
-    }
-
-    @Test
-    void testSetY() {
-    }
-
 }

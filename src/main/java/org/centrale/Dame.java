@@ -28,9 +28,9 @@ public class Dame extends Pion {
     @Override
     public String toString() {
         if (this.getCouleur() == Couleur.BLANC){
-            return "■";
+            return "X";
         } else {
-            return "□";
+            return "O";
         }
     }
 

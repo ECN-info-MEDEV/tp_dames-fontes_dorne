@@ -15,12 +15,4 @@ class CouleurTest {
     @AfterEach
     void tearDown() {
     }
-
-    @Test
-    void testValues() {
-    }
-
-    @Test
-    void testValueOf() {
-    }
 }

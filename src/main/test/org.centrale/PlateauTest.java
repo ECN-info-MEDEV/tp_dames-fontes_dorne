@@ -19,20 +19,4 @@ class PlateauTest {
     @Test
     void testToString() {
     }
-
-    @Test
-    void testGetPions() {
-    }
-
-    @Test
-    void testSetPions() {
-    }
-
-    @Test
-    void testGetJoueurs() {
-    }
-
-    @Test
-    void testSetJoueurs() {
-    }
 }
