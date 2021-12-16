@@ -15,7 +15,6 @@ public class Plateau {
 
     private int tour;
 
-
     /**
      * Constructeur vide
      */
@@ -28,7 +27,7 @@ public class Plateau {
     /**
      * Constructeur
      *
-     * @param pions   the pions
+     * @param pions the pions
      * @param joueurs the joueurs
      */
     public Plateau(List<Pion> pions, List<Joueur> joueurs, int tour) {
@@ -37,8 +36,7 @@ public class Plateau {
         this.tour = tour;
     }
 
-
-    public void init(){
+    public void init() {
 
         List<Pion> pions = this.getPions();
 
@@ -46,7 +44,7 @@ public class Plateau {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
 
-                if ( i == 5 || i == 6) {
+                if (i == 5 || i == 6) {
                     //Pas de pions sur les lignes 5 et 6
                 } else if (i % 2 == 0) {
                     //Si ligne paire alors pions sur colonne paire
@@ -92,13 +90,54 @@ public class Plateau {
     public void tourDeJeu() {
     }
 
+    public boolean verifDeplacement(Point2D positionDepart, Point2D positionSuivante) {
+        int xInit = positionDepart.getX();
+        int yInit = positionDepart.getY();
+        int xNext = positionSuivante.getX();
+        int yNext = positionSuivante.getY();
+
+        ArrayList<Point2D> positionAutorisees = new ArrayList<>();
+        int[] translations = new int[]{-1, 1};
+        for (int i : translations) {
+            for (int j : translations) {
+                Point2D position = new Point2D(xInit + i, yInit + j);
+
+                positionAutorisees.add(position);
+            }
+        }
+
+        // Position parmi celles autorisees
+        boolean autorise = false;
+        for (Point2D pos : positionAutorisees) {
+            if (pos.equals(positionSuivante)) {
+                autorise = true;
+                break;
+            }
+        }
+        if (!autorise) {
+            return false;
+        }
+        // Position dans le plateau
+        if (yNext > 10 | yNext < 0 | xNext > 10 | xNext < 0) {
+            System.out.println("hors plateau");
+            return false;
+        }
+        // Position non occupée
+        for (Pion pion : this.pions) {
+            if (pion.getPosition().equals(positionSuivante)) {
+                System.out.println("Occupee");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public boolean isGameFinished() {
 
         Boolean test = false;
 
         //Test sur fin de partie
-
-
         if (test) {
             return true;
         } else {
@@ -125,11 +164,10 @@ public class Plateau {
         int position;
         for (Pion pion : pions) {
             position = (pion.getPosition().getX() - 1) * 23 + (pion.getPosition().getY() - 1) * 2 + 27;
-            visu = visu.substring(0,position) + pion + visu.substring(position + 1);
+            visu = visu.substring(0, position) + pion + visu.substring(position + 1);
         }
         return "\t" + this.getJoueurs().get(0).getNom() + "\n" + visu + "\t" + this.getJoueurs().get(1).getNom();
     }
-
 
     /**
      * Gets pions.

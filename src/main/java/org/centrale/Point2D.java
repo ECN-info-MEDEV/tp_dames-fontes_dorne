@@ -29,6 +29,10 @@ public class Point2D {
                 ", y=" + y +
                 '}';
     }
+    
+    public boolean equals(Point2D autrePoint){
+        return (this.x==autrePoint.x && this.y==autrePoint.y);
+    }
 
 
     /**
