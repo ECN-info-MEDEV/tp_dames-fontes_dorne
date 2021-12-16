@@ -19,8 +19,9 @@ public class Main {
         Plateau plateau = new Plateau();
         plateau.init();
 
-//        while (!isGameFinished(plateau)) {
-//            tourDeJeu(plateau);
+
+//        while (!plateau.isGameFinished()) {
+//            plateau.tourDeJeu();
 //        }
 
     }

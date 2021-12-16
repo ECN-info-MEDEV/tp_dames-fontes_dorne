@@ -19,4 +19,16 @@ class PlateauTest {
     @Test
     void testToString() {
     }
+
+    @Test
+    void testInit() {
+    }
+
+    @Test
+    void testTourDeJeu() {
+    }
+
+    @Test
+    void testIsGameFinished() {
+    }
 }

@@ -13,6 +13,8 @@ public class Plateau {
 
     private List<Joueur> joueurs;
 
+    private int tour;
+
 
     /**
      * Constructeur vide
@@ -20,6 +22,7 @@ public class Plateau {
     public Plateau() {
         this.pions = new ArrayList<>();
         this.joueurs = new ArrayList<>();
+        this.tour = 0;
     }
 
     /**
@@ -28,16 +31,16 @@ public class Plateau {
      * @param pions   the pions
      * @param joueurs the joueurs
      */
-    public Plateau(List<Pion> pions, List<Joueur> joueurs) {
+    public Plateau(List<Pion> pions, List<Joueur> joueurs, int tour) {
         this.pions = pions;
         this.joueurs = joueurs;
+        this.tour = tour;
     }
 
 
-    public Plateau init(){
+    public void init(){
 
-        Plateau plateau = new Plateau();
-        List<Pion> pions = plateau.getPions();
+        List<Pion> pions = this.getPions();
 
         //Création des Pions
         for (int i = 1; i <= 10; i++) {
@@ -72,26 +75,24 @@ public class Plateau {
 
         System.out.println("Quel est le nom du joueur 1 ?");
         String nom1 = myObj.nextLine();
-        plateau.getJoueurs().add(new Joueur(Couleur.BLANC, nom1));
-        System.out.println(plateau.getJoueurs().get(0).toString());
+        this.getJoueurs().add(new Joueur(Couleur.BLANC, nom1));
+        System.out.println(this.getJoueurs().get(0).toString());
 
         System.out.println("Quel est le nom du joueur 2 ?");
         String nom2 = myObj.nextLine();
-        plateau.getJoueurs().add(new Joueur(Couleur.NOIR, nom2));
-        System.out.println(plateau.getJoueurs().get(1).toString());
+        this.getJoueurs().add(new Joueur(Couleur.NOIR, nom2));
+        System.out.println(this.getJoueurs().get(1).toString());
 
         //Fin de l'initialisation du jeu
         System.out.println("Jouons au jeu de Dames !\n");
 
-        System.out.println(plateau);
-
-        return plateau;
+        System.out.println(this);
     }
 
-    public void tourDeJeu(Plateau plateau) {
+    public void tourDeJeu() {
     }
 
-    public boolean isGameFinished(Plateau plateau) {
+    public boolean isGameFinished() {
 
         Boolean test = false;
 
@@ -108,21 +109,22 @@ public class Plateau {
     @Override
     public String toString() {
         String visu = """
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
-                 | | | | | | | | |\s
+                   1 2 3 4 5 6 7 8 9 10
+                1   | | | | | | | | |\s
+                2   | | | | | | | | |\s
+                3   | | | | | | | | |\s
+                4   | | | | | | | | |\s
+                5   | | | | | | | | |\s
+                6   | | | | | | | | |\s
+                7   | | | | | | | | |\s
+                8   | | | | | | | | |\s
+                9   | | | | | | | | |\s
+                10  | | | | | | | | |\s
                 """;
 
         int position;
         for (Pion pion : pions) {
-            position = (pion.getPosition().getX() - 1) * 20 + (pion.getPosition().getY() - 1) * 2;
+            position = (pion.getPosition().getX() - 1) * 23 + (pion.getPosition().getY() - 1) * 2 + 27;
             visu = visu.substring(0,position) + pion + visu.substring(position + 1);
         }
         return "\t" + this.getJoueurs().get(0).getNom() + "\n" + visu + "\t" + this.getJoueurs().get(1).getNom();
