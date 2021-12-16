@@ -11,4 +11,4 @@ JeuDeDames.iml
 
 .idea/
 /target/
-/target/
+*desktop.ini
