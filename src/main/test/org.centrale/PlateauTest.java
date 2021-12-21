@@ -1,39 +1,42 @@
 package org.centrale;
 
-import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class PlateauTest {
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
     }
 
     @Test
-    public void testInit() {
+    void testInit() {
     }
 
     @Test
-    public void testTourDeJeu() {
+    void testTourDeJeu() {
     }
 
     @Test
-    public void testIsGameFinished() {
+    void testIsGameFinished() {
     }
 
     @Test
-    public void testDeplacePion() {
+    void testVerifDeplacement() {
         //Arrange
        Plateau plateau = new Plateau();
        ArrayList<Pion> pions = new ArrayList<>();
