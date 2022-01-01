@@ -15,6 +15,9 @@ public class Plateau {
 
     private int tour;
 
+    private Scanner scanner;
+
+
     /**
      * Constructeur vide
      */
@@ -22,6 +25,7 @@ public class Plateau {
         this.pions = new ArrayList<>();
         this.joueurs = new ArrayList<>();
         this.tour = 0;
+        this.scanner = new Scanner(System.in);
     }
 
     /**
@@ -29,16 +33,19 @@ public class Plateau {
      *
      * @param pions the pions
      * @param joueurs the joueurs
+     * @param tour    the tour
      */
     public Plateau(List<Pion> pions, List<Joueur> joueurs, int tour) {
         this.pions = pions;
         this.joueurs = joueurs;
         this.tour = tour;
+        this.scanner = new Scanner(System.in);
     }
 
-    public void init() {
-
-        List<Pion> pions = this.getPions();
+    /**
+     * Méthode d'initialisation du plateau de jeu
+     */
+    public void init(){
 
         //Création des Pions
         for (int i = 1; i <= 10; i++) {
@@ -69,15 +76,13 @@ public class Plateau {
         }
 
         //Création des Joueurs
-        Scanner myObj = new Scanner(System.in);
-
         System.out.println("Quel est le nom du joueur 1 ?");
-        String nom1 = myObj.nextLine();
+        String nom1 = scanner.nextLine();
         this.getJoueurs().add(new Joueur(Couleur.BLANC, nom1));
         System.out.println(this.getJoueurs().get(0).toString());
 
         System.out.println("Quel est le nom du joueur 2 ?");
-        String nom2 = myObj.nextLine();
+        String nom2 = scanner.nextLine();
         this.getJoueurs().add(new Joueur(Couleur.NOIR, nom2));
         System.out.println(this.getJoueurs().get(1).toString());
 
@@ -87,7 +92,53 @@ public class Plateau {
         System.out.println(this);
     }
 
+    /**
+     * Méthode permettant à un joueur de jouer, en fonction du nombre de tour écoulé
+     */
     public void tourDeJeu() {
+
+        boolean isDeplacementValide = false;
+        int lignePion;
+        int colonnePion;
+        int ligneDestination;
+        int colonneDestionation;
+
+
+        while (!isDeplacementValide) {
+            if (tour % 2 == 0) {
+                //Au tour du joueur Blanc de jouer
+                System.out.println("Au tour de " + joueurs.get(0).getNom() + " de jouer !\n");
+            } else {
+                //Au tour du joueur Noir de jouer
+                System.out.println("Au tour de " + joueurs.get(1).getNom() + " de jouer !\n");
+            }
+
+            System.out.println("Quel pion souhaites-tu déplacer ?\nDonne sa ligne puis sa colonne");
+            lignePion = scanner.nextInt();
+            colonnePion = scanner.nextInt();
+
+            if(getPionFromPosition(lignePion, colonnePion) != null) {
+                System.out.println("Où souhaites tu déplacer ce pion ?\nDonne sa ligne puis sa colonne");
+                ligneDestination = scanner.nextInt();
+                colonneDestionation = scanner.nextInt();
+
+                System.out.println("lignePion : " + lignePion);
+                System.out.println("colonnePion : " + colonnePion);
+                System.out.println("ligneDestination : " + ligneDestination);
+                System.out.println("colonneDestionation : " + colonneDestionation);
+                isDeplacementValide = true;
+                if (!isDeplacementValide) {
+                    System.out.println("Déplacement invalide ! Veuillez recommencer >:(");
+                }
+            } else {
+
+            }
+
+
+        }
+
+        //Incrémentation du compteur de tour une fois l'action effectuée
+        this.tour++;
     }
 
     public boolean verifDeplacement(Point2D positionDepart, Point2D positionSuivante) {
@@ -122,7 +173,7 @@ public class Plateau {
             System.out.println("hors plateau");
             return false;
         }
-        // Position non occup�e
+        // Position non occup�e
         for (Pion pion : this.pions) {
             if (pion.getPosition().equals(positionSuivante)) {
                 System.out.println("Occupee");
@@ -133,15 +184,35 @@ public class Plateau {
         return true;
     }
 
-    public boolean isGameFinished() {
+    private Pion getPionFromPosition(int lignePion, int colonnePion) {
+        Point2D position = new Point2D(lignePion, colonnePion);
 
-        Boolean test = false;
+        for (Pion pion : pions) {
+            if (pion.getPosition().equals(position)) {
+                return pion;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Méthode vérifiant si la partie est finie
+     *
+     * @return the boolean
+     */
+    public String isGameFinished() {
 
         //Test sur fin de partie
-        if (test) {
-            return true;
+        if (pions.stream().anyMatch(o -> o.getCouleur().equals(Couleur.NOIR))
+                && pions.stream().anyMatch(o -> o.getCouleur().equals(Couleur.BLANC))) {
+            return "Partie non finie";
+        } else if (pions.stream().anyMatch(o -> o.getCouleur().equals(Couleur.NOIR))){
+            return "Noir a gagné";
+        } else if (pions.stream().anyMatch(o -> o.getCouleur().equals(Couleur.BLANC))){
+            return "Blanc a gagné";
         } else {
-            return false;
+            return "Une erreur s'est produite";
         }
     }
 
