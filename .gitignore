@@ -13,3 +13,5 @@ JeuDeDames.iml
 /target/
 *desktop.ini
 /nbproject/
+
+sonar-project.properties

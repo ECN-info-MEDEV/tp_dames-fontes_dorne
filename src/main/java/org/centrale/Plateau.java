@@ -117,7 +117,9 @@ public class Plateau {
             lignePion = scanner.nextInt();
             colonnePion = scanner.nextInt();
 
-            if(getPionFromPosition(lignePion, colonnePion) != null) {
+            Pion pion_selectionne = getPionFromPosition(lignePion, colonnePion);
+
+            if(pion_selectionne != null) {
                 System.out.println("Où souhaites tu déplacer ce pion ?\nDonne sa ligne puis sa colonne");
                 ligneDestination = scanner.nextInt();
                 colonneDestionation = scanner.nextInt();
@@ -126,7 +128,8 @@ public class Plateau {
                 System.out.println("colonnePion : " + colonnePion);
                 System.out.println("ligneDestination : " + ligneDestination);
                 System.out.println("colonneDestionation : " + colonneDestionation);
-                isDeplacementValide = true;
+                Point2D position_choisie = new Point2D(ligneDestination, colonneDestionation);
+                isDeplacementValide = verifDeplacement(pion_selectionne.getPosition(), position_choisie);
                 if (!isDeplacementValide) {
                     System.out.println("Déplacement invalide ! Veuillez recommencer >:(");
                 }
@@ -173,7 +176,7 @@ public class Plateau {
             System.out.println("hors plateau");
             return false;
         }
-        // Position non occup�e
+        // Position non occupee
         for (Pion pion : this.pions) {
             if (pion.getPosition().equals(positionSuivante)) {
                 System.out.println("Occupee");

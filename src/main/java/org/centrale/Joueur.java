@@ -1,5 +1,7 @@
 package org.centrale;
 
+import java.sql.SQLOutput;
+
 /**
  * Classe Joueur
  */
@@ -14,7 +16,7 @@ public class Joueur {
      * Constructeur
      *
      * @param couleur the couleur
-     * @param nom the nom
+     * @param nom     the nom
      */
     public Joueur(Couleur couleur, String nom) {
         this.couleur = couleur;
@@ -66,5 +68,18 @@ public class Joueur {
      */
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+
+    public static void main(String[] args) {
+        Joueur joueur1 = new Joueur(Couleur.BLANC, "Alfred");
+        System.out.println(joueur1);
+        Joueur joueur2 = new Joueur(Couleur.NOIR, "Bernard");
+        System.out.println(joueur2);
+        joueur1.setCouleur(Couleur.NOIR);
+        System.out.println(joueur1);
+        joueur2.setCouleur(Couleur.BLANC);
+        System.out.println(joueur2);
+
     }
 }

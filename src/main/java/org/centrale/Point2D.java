@@ -1,5 +1,7 @@
 package org.centrale;
 
+import java.util.Objects;
+
 /**
  * Classe Point2D
  */
@@ -29,9 +31,22 @@ public class Point2D {
                 ", y=" + y +
                 '}';
     }
-    
-    public boolean equals(Point2D autrePoint){
-        return (this.x==autrePoint.x && this.y==autrePoint.y);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Point2D other = (Point2D) o;
+        return (this.x == other.x && this.y == other.y);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.x, this.y);
     }
 
 
